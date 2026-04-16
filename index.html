@@ -2,54 +2,67 @@
 <html>
 <head>
   <title>What Should I Do?</title>
+
   <style>
     body {
+      margin: 0;
       font-family: Arial, sans-serif;
-      text-align: center;
-      margin-top: 90px;
-      background: linear-gradient(135deg, #ffe6f0, #e6f7ff);
+      background: linear-gradient(135deg, #ffd6e7, #d6f3ff);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
     }
 
     .card {
-      background: white;
       width: 90%;
-      max-width: 500px;
-      margin: auto;
-      padding: 40px 20px;
-      border-radius: 20px;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+      max-width: 520px;
+      height: 80vh;
+      background: white;
+      border-radius: 25px;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 30px;
+      text-align: center;
     }
 
     h1 {
+      font-size: 28px;
       margin-bottom: 10px;
     }
 
     p {
-      color: #555;
+      font-size: 16px;
+      color: #666;
       margin-bottom: 30px;
     }
 
     button {
-      padding: 15px 25px;
+      padding: 15px 28px;
       font-size: 18px;
-      cursor: pointer;
       border: none;
-      border-radius: 12px;
-      background: #ff7aa2;
+      border-radius: 15px;
+      background: #ff6fae;
       color: white;
-      transition: 0.2s;
+      cursor: pointer;
+      transition: 0.2s ease;
     }
 
     button:hover {
-      background: #ff4f87;
+      background: #ff4f97;
       transform: scale(1.05);
     }
 
     #result {
-      margin-top: 30px;
-      font-size: 22px;
+      margin-top: 35px;
+      font-size: 24px;
       font-weight: bold;
       color: #333;
+      padding: 0 10px;
+      min-height: 60px;
     }
   </style>
 </head>
@@ -59,7 +72,8 @@
 <div class="card">
 
   <h1>What Should I Do Right Now?</h1>
-  <p>Click here to find out</p>
+
+  <p>Click here to find out what your next moment becomes ✨</p>
 
   <button onclick="generate()">Click here to find out</button>
 
@@ -96,12 +110,27 @@
     "Make a snack but make it chaotic",
     "Rearrange something just for fun",
     "Write a book",
-    "Make some videos (only post them if you have permission)"
+    "Make some videos"
   ];
 
+  let lastResults = [];
+
   function generate() {
-    const randomIndex = Math.floor(Math.random() * ideas.length);
-    document.getElementById("result").innerText = ideas[randomIndex];
+    let index;
+
+    // prevents repeating same results too often
+    do {
+      index = Math.floor(Math.random() * ideas.length);
+    } while (lastResults.includes(index) && ideas.length > 5);
+
+    lastResults.push(index);
+
+    // keep only last 5 results
+    if (lastResults.length > 5) {
+      lastResults.shift();
+    }
+
+    document.getElementById("result").innerText = ideas[index];
   }
 </script>
 

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>What Should I Do?</title>
+  <style>
+    body {
+      font-family: Arial;
+      text-align: center;
+      margin-top: 100px;
+      background: linear-gradient(120deg, #f0f0f0, #dfe9f3);
+    }
+
+    button {
+      padding: 15px 30px;
+      font-size: 18px;
+      cursor: pointer;
+      border: none;
+      border-radius: 12px;
+      background: #333;
+      color: white;
+    }
+
+    button:hover {
+      background: #555;
+    }
+
+    #result {
+      margin-top: 40px;
+      font-size: 26px;
+      font-weight: bold;
+      padding: 0 20px;
+    }
+  </style>
+</head>
+
+<body>
+
+<h1>What Should I Do Right Now?</h1>
+
+<button onclick="generate()">Give Me Something</button>
+
+<div id="result"></div>
+
+<script>
+  const ideas = [
+    "Go outside for 5 minutes and just exist",
+    "Drink a full glass of water right now",
+    "Text someone you haven’t talked to in a while",
+    "Do 15 jumping jacks like your life depends on it",
+    "Draw the first thing that pops into your head",
+    "Watch a completely random video on YouTube",
+    "Clean the most annoying spot in your room",
+    "Make up a brand new game with weird rules",
+    "Stare out a window for 2 minutes",
+    "Listen to a song you haven’t heard in months",
+    "Try to balance something on your head",
+    "Write a fake movie plot in 1 minute",
+    "Google something you’ve always been curious about",
+    "Organize one small thing like a drawer or folder",
+    "Try to do a handstand",
+    "Take 10 deep slow breaths",
+    "Invent a useless invention",
+    "Make a meme in your head",
+    "Act like you’re a narrator describing your life",
+    "Try to find 3 things that are blue around you",
+    "Say something nice to someone in your house",
+    "Walk around your room like it’s a runway",
+    "Pretend you’re in a video game for 2 minutes",
+    "Write a weird question and try to answer it",
+    "Make a snack but make it chaotic",
+    "Rearrange something just for fun",
+    "Write a book",
+    "Make some videos (only post them if you have permission)"
+  ];
+
+  function generate() {
+    const randomIndex = Math.floor(Math.random() * ideas.length);
+    document.getElementById("result").innerText = ideas[randomIndex];
+  }
+</script>
+
+</body>
+</html>

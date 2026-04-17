@@ -7,144 +7,169 @@
     body {
       margin: 0;
       font-family: Arial, sans-serif;
-      height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background: radial-gradient(circle at top, #ffe3ee, #d9f3ff, #ffffff);
-      overflow: hidden;
+      background: #f8d7e6;
+      overflow-x: hidden;
     }
 
-    /* soft background glow shapes */
-    .glow {
+    .header {
+      height: 220px;
+      background: url("https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=1600&q=60");
+      background-size: cover;
+      background-position: center;
+      position: relative;
+    }
+
+    .header::after {
+      content: "";
       position: absolute;
-      width: 300px;
-      height: 300px;
-      border-radius: 50%;
-      filter: blur(60px);
-      opacity: 0.35;
+      inset: 0;
+      background: rgba(255, 120, 170, 0.35);
     }
 
-    .g1 { background: #ff8fb3; top: -50px; left: -50px; }
-    .g2 { background: #8fd3ff; bottom: -80px; right: -60px; }
-    .g3 { background: #ffd38f; top: 40%; left: 70%; }
-
-    .card {
-      width: 92%;
-      max-width: 560px;
-      height: 85vh;
-      background: rgba(255, 255, 255, 0.92);
-      border-radius: 35px;
-      box-shadow: 0 20px 60px rgba(0,0,0,0.15);
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      padding: 40px;
-      text-align: center;
+    .title {
+      position: absolute;
+      bottom: 20px;
+      left: 20px;
+      color: white;
+      font-size: 28px;
+      font-weight: bold;
       z-index: 2;
     }
 
-    h1 {
-      font-size: 32px;
-      color: #222;
-      margin-bottom: 40px;
-      letter-spacing: 0.5px;
+    .content {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 20px;
+      padding: 25px;
+      max-width: 900px;
+      margin: -40px auto 0 auto;
+    }
+
+    .panel {
+      border-radius: 25px;
+      overflow: hidden;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+    }
+
+    .image-card {
+      height: 180px;
+      background-size: cover;
+      background-position: center;
+    }
+
+    .generator {
+      background: white;
+      padding: 30px;
+      text-align: center;
     }
 
     button {
-      padding: 18px 34px;
+      padding: 15px 28px;
       font-size: 18px;
       border: none;
-      border-radius: 20px;
-      background: linear-gradient(135deg, #ff5fa2, #ff9bc1);
+      border-radius: 18px;
+      background: #ff5fa2;
       color: white;
       cursor: pointer;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.12);
-      transition: 0.25s ease;
     }
 
     button:hover {
-      transform: translateY(-2px) scale(1.05);
-      box-shadow: 0 12px 25px rgba(0,0,0,0.18);
+      transform: scale(1.05);
     }
 
     #result {
-      margin-top: 50px;
-      font-size: 28px;
+      margin-top: 25px;
+      font-size: 24px;
       font-weight: bold;
       color: #333;
-      min-height: 90px;
-      padding: 0 20px;
-      line-height: 1.3;
+      min-height: 60px;
+    }
+
+    .footer-note {
+      text-align: center;
+      font-size: 14px;
+      color: #555;
+      padding: 20px;
     }
   </style>
 </head>
 
 <body>
 
-<div class="glow g1"></div>
-<div class="glow g2"></div>
-<div class="glow g3"></div>
+<div class="header">
+  <div class="title">What Should I Do Right Now</div>
+</div>
 
-<div class="card">
+<div class="content">
 
-  <h1>What Should I Do Right Now?</h1>
+  <div class="panel image-card" id="mainImage"
+    style="background-image:url('https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1200&q=60');">
+  </div>
 
-  <button onclick="generate()">Click here to find out</button>
+  <div class="panel generator">
+    <button onclick="generate()">Click here to find out</button>
+    <div id="result"></div>
+  </div>
 
-  <div id="result"></div>
+  <div class="panel image-card"
+    style="background-image:url('https://images.unsplash.com/photo-1511974035430-5de47d3b95da?auto=format&fit=crop&w=1200&q=60');">
+  </div>
 
+</div>
+
+<div class="footer-note">
+  A simple idea generator for when you feel stuck or bored
 </div>
 
 <script>
   const ideas = [
-    "Go outside for 5 minutes and just exist",
-    "Drink a full glass of water right now",
-    "Text someone you haven’t talked to in a while",
-    "Do 15 jumping jacks like your life depends on it",
-    "Draw the first thing that pops into your head",
-    "Watch a completely random video on YouTube",
-    "Clean the most annoying spot in your room",
-    "Make up a brand new game with weird rules",
-    "Stare out a window for 2 minutes",
-    "Listen to a song you haven’t heard in months",
-    "Try to balance something on your head",
-    "Write a fake movie plot in 1 minute",
-    "Google something you’ve always been curious about",
-    "Organize one small thing like a drawer or folder",
-    "Try to do a handstand",
-    "Take 10 deep slow breaths",
-    "Invent a useless invention",
-    "Make a meme in your head",
-    "Act like you’re a narrator describing your life",
-    "Try to find 3 things that are blue around you",
-    "Say something nice to someone in your house",
-    "Walk around your room like it’s a runway",
-    "Pretend you’re in a video game for 2 minutes",
-    "Write a weird question and try to answer it",
-    "Make a snack but make it chaotic",
-    "Rearrange something just for fun",
-    "Write a book",
-    "Make some videos (only post them if you have permission)"
+    { text: "Go outside for 5 minutes and just exist", image: "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1200&q=60" },
+    { text: "Drink a full glass of water right now", image: "https://images.unsplash.com/photo-1558642452-9d2a7deb7f62?auto=format&fit=crop&w=1200&q=60" },
+    { text: "Text someone you haven’t talked to in a while", image: "https://images.unsplash.com/photo-1516387938699-a93567ec168e?auto=format&fit=crop&w=1200&q=60" },
+    { text: "Do 15 jumping jacks", image: "https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&w=1200&q=60" },
+    { text: "Draw the first thing that pops into your head", image: "https://images.unsplash.com/photo-1513364776144-60967b0f800f?auto=format&fit=crop&w=1200&q=60" },
+    { text: "Watch a random video online", image: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1200&q=60" },
+    { text: "Clean the most annoying spot in your room", image: "https://images.unsplash.com/photo-1581578731548-c64695cc6952?auto=format&fit=crop&w=1200&q=60" },
+    { text: "Make up a brand new game with weird rules", image: "https://images.unsplash.com/photo-1611996575749-79a3a250f948?auto=format&fit=crop&w=1200&q=60" },
+    { text: "Stare out a window for 2 minutes", image: "https://images.unsplash.com/photo-1482192505345-5655af888cc4?auto=format&fit=crop&w=1200&q=60" },
+    { text: "Listen to a song you haven’t heard in months", image: "https://images.unsplash.com/photo-1511379938547-c1f69419868d?auto=format&fit=crop&w=1200&q=60" },
+    { text: "Try to balance something on your head", image: "https://images.unsplash.com/photo-1599058917212-d750089bc07e?auto=format&fit=crop&w=1200&q=60" },
+    { text: "Write a fake movie plot in 1 minute", image: "https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?auto=format&fit=crop&w=1200&q=60" },
+    { text: "Google something you’re curious about", image: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1200&q=60" },
+    { text: "Organize a small drawer or folder", image: "https://images.unsplash.com/photo-1585771724684-38269d6639fd?auto=format&fit=crop&w=1200&q=60" },
+    { text: "Try a handstand", image: "https://images.unsplash.com/photo-1518611012118-696072aa579a?auto=format&fit=crop&w=1200&q=60" },
+    { text: "Take 10 deep breaths", image: "https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&w=1200&q=60" },
+    { text: "Invent a useless invention", image: "https://images.unsplash.com/photo-1492724441997-5dc865305da7?auto=format&fit=crop&w=1200&q=60" },
+    { text: "Make a meme in your head", image: "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=1200&q=60" },
+    { text: "Act like you’re narrating your life", image: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1200&q=60" },
+    { text: "Find 3 things that are blue around you", image: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=60" },
+    { text: "Say something nice to someone in your house", image: "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=1200&q=60" },
+    { text: "Walk a fashion runway like a model", image: "https://images.unsplash.com/photo-1509631179647-0177331693ae?auto=format&fit=crop&w=1200&q=60" },
+    { text: "Pretend you’re in a video game", image: "https://images.unsplash.com/photo-1551103782-8ab07afd45c1?auto=format&fit=crop&w=1200&q=60" },
+    { text: "Write a weird question and answer it", image: "https://images.unsplash.com/photo-1455390582262-044cdead277a?auto=format&fit=crop&w=1200&q=60" },
+    { text: "Make a chaotic snack", image: "https://images.unsplash.com/photo-1556911220-bff31c812dba?auto=format&fit=crop&w=1200&q=60" },
+    { text: "Rearrange something for fun", image: "https://images.unsplash.com/photo-1584824486509-112e4181ff6b?auto=format&fit=crop&w=1200&q=60" },
+    { text: "Write a book", image: "https://images.unsplash.com/photo-1455885666463-8f6c3f9e8c8f?auto=format&fit=crop&w=1200&q=60" },
+    { text: "Make videos (with permission)", image: "https://images.unsplash.com/photo-1516035069371-29a1b244cc32?auto=format&fit=crop&w=1200&q=60" }
   ];
 
-  let lastResults = [];
+  let last = [];
 
   function generate() {
-    let index;
+    let i;
 
     do {
-      index = Math.floor(Math.random() * ideas.length);
-    } while (lastResults.includes(index) && ideas.length > 5);
+      i = Math.floor(Math.random() * ideas.length);
+    } while (last.includes(i) && ideas.length > 3);
 
-    lastResults.push(index);
+    last.push(i);
+    if (last.length > 8) last.shift();
 
-    if (lastResults.length > 5) {
-      lastResults.shift();
-    }
+    const pick = ideas[i];
 
-    document.getElementById("result").innerText = ideas[index];
+    document.getElementById("result").innerText = pick.text;
+    document.getElementById("mainImage").style.backgroundImage =
+      `url('${pick.image}')`;
   }
 </script>
 
